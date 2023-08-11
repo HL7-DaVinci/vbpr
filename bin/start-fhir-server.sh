@@ -21,6 +21,7 @@ fi
 
 if [ ! "${DATA_EXISTS}" == "true" ]; then
     mkdir -p $(pwd)/fhir-server/.data
+    chmod a+w $(pwd)/fhir-server/.data
     CONFIG_FILE="hapi-fhir.application.bootstrap.yaml"
     echo "Database not found, so Implementation Guide resources and dependencies will be imported. This may take 15 minutes or more. Please be patient..."
 else
