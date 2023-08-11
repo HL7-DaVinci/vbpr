@@ -4,12 +4,12 @@
     "cpus": 4
   },
   "waitFor": "onCreateCommand",
-  "postCreateCommand": "",
+  "postCreateCommand": "/bin/bash ./.devcontainer/change-port-visibility.sh 3000 public && /bin/bash ./.devcontainer/change-port-visibility.sh 8080 public",
   "portsAttributes": {
     "3000": {
       "label": "Application",
       "onAutoForward": "openPreview"
     }
   },
-  "forwardPorts": [3000]
+  "forwardPorts": [3000, 8080]
 }

@@ -25,6 +25,7 @@ const ClientProvider = ({ children }) => {
     const fn = async () => {
       const result = await getClientConfig();
       setClientConfig(result);
+      console.log(result)
     };
     fn();
   }, []);
