@@ -1,0 +1,43 @@
+{
+  "name": "vbpr-ri-ui",
+  "version": "0.1.0",
+  "description": "UI for the Da Vinci Value Based Performance Reporting (VBPR) Implementation Guide (IG) Reference Implementation",
+  "author": "Chris Lance (Edifecs)",
+  "license": "MIT",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "npm install && npm run build",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@rebass/preset": "^4.0.5",
+    "date-fns": "^2.30.0",
+    "emotion-theming": "^11.0.0",
+    "fhir-react": "^1.0.0",
+    "fhirclient": "^2.5.2",
+    "fhirpath": "^3.6.0",
+    "immer": "^10.0.2",
+    "next": "^13.4.13",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^8.0.7",
+    "react-spinners": "^0.13.8",
+    "react-use": "^17.4.0",
+    "rebass": "^4.0.7",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.2",
+    "styled-components": "^6.0.7"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.1.4",
+    "eslint": "^8.46.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  }
+}

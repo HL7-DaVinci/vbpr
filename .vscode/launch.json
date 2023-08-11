@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Attach to Chrome",
+        "port": 9222,
+        "request": "attach",
+        "type": "chrome",
+        "webRoot": "${workspaceFolder}/web-app"
+      },
+      {
+        "name": "Run application",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceFolder}/packages/app",
+        "console": "integratedTerminal",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": [
+          "run",
+          "dev"
+        ],
+        "skipFiles": [
+          "<node_internals>/**",
+          "**/node_modules/**"
+        ]
+      }
+    ]
+  }

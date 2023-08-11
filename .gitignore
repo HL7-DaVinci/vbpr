@@ -1,0 +1,11 @@
+.env.*
+!.env
+
+/node_modules/
+
+# next.js
+/.next/
+
+.examples/
+fhir-server/.data/
+fhir-server/.datax/
