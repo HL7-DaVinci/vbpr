@@ -17,5 +17,4 @@ http://localhost:3000
 ```./bin/stop-fhir-server.sh```
 
 ### Start the web app server
-```cd web-app```
-```npm run start```
+```cd web-app && npm run start```
