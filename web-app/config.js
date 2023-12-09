@@ -1,21 +1,18 @@
-const fetchEndpointUrl = async () => {
-  const res = await fetch('/api/fhir');
-  const data = await res.json();
-  console.log(data);
-  return data.endpoint;
+const fetchClientConfig = async () => {
+  const res = await fetch('/api/client-config');
+  const config = await res.json();
+  return config;
 }
 
-const clientConfig = {
-  serverUrl: 'http://localhost:8080/fhir',
+const defaultClientConfig = {
+  // fhirEndpoint: 'http://localhost:3000/api/fhir',
   noAuth: true,
 };
 
-const getClientConfig = async () => {
-  const config = {
+export const getClientConfig = async () => {
+  const clientConfig = await await fetchClientConfig();
+  return {
+    ...defaultClientConfig,
     ...clientConfig,
-    serverUrl: (await fetchEndpointUrl()) || clientConfig.serverUrl,
   }
-  return config;
 };
-
-export { getClientConfig };

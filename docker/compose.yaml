@@ -1,0 +1,26 @@
+services:
+  fhir:
+    build:
+      context:  ../fhir-server
+      dockerfile: ../docker/Dockerfile.fhir-server
+    environment:
+      - hapi.fhir.ig_runtime_upload_enabled=false
+      - hapi.fhir.install_transitive_ig_dependencies=true
+      - hapi.fhir.implementationguides.vbpr.name=hl7.fhir.us.davinci-vbpr
+      - hapi.fhir.implementationguides.vbpr.version=1.0.0-ballot
+      - hapi.fhir.implementationguides.vbpr.reloadExisting=false
+      - hapi.fhir.implementationguides.vbpr.installMode=STORE_AND_INSTALL
+    ports:
+      - "8080:8080"
+  web:
+    build:
+      context:  ../web-app
+      dockerfile: ../docker/Dockerfile.web-app
+    environment:
+      - FHIR_ENDPOINT=http://fhir:8080/fhir
+    ports:
+      - "3000:3000"
+  init:
+    build:
+      context:  ../fhir-server
+      dockerfile: ../docker/Dockerfile.init

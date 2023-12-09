@@ -22,25 +22,30 @@ const SpinnerContainer = styled.div`
   margin-top: 10em;
 `;
 
+// TODO: Redirect to launcher if missing state
 const HomePage = () => {
   const client = useClient();
   const [reports, setReports] = useState();
 
   useEffect(() => {
     const getResources = async () => {
-      if (client) {
-        const profile = 'http://hl7.org/fhir/us/davinci-vbpr/StructureDefinition/vbp-performance-measurereport';
-        const results = await client.request(
-          `MeasureReport?_profile=${encodeURIComponent(profile)}`,
-          {
-            pageLimit: 0,
-            resolveReferences: ['reporter'],
-          },
-        );
-        const mergedResults = mergePages(results);
-        setReports(mergedResults.entry || []);
-      }
-    };
+      try {
+        if (client) {
+          const profile = 'http://hl7.org/fhir/us/davinci-vbpr/StructureDefinition/vbp-performance-measurereport';
+          const results = await client.request(
+            `MeasureReport?_profile=${encodeURIComponent(profile)}`,
+            {
+              pageLimit: 0,
+              resolveReferences: ['reporter'],
+            },
+          );
+          const mergedResults = mergePages(results);
+          setReports(mergedResults.entry || []);
+        }
+      } catch (err) {
+        console.error(err);
+      };
+    }
     getResources();
   }, [client]);
 

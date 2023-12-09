@@ -25,7 +25,6 @@ const ClientProvider = ({ children }) => {
     const fn = async () => {
       const result = await getClientConfig();
       setClientConfig(result);
-      console.log(result)
     };
     fn();
   }, []);
@@ -59,6 +58,8 @@ const ClientProvider = ({ children }) => {
       const scope = clientScopes
         ? clientScopes.join(' ')
         : 'openid offline';
+
+      console.log(`Intializing FHIR client for ${serverUrl}`);
 
       if (noAuth) {
         SMART.authorize({

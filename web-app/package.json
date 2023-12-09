@@ -14,11 +14,13 @@
   },
   "dependencies": {
     "@rebass/preset": "^4.0.5",
+    "cookies": "^0.8.0",
     "date-fns": "^2.30.0",
     "emotion-theming": "^11.0.0",
     "fhir-react": "^1.0.0",
     "fhirclient": "^2.5.2",
     "fhirpath": "^3.6.0",
+    "http-proxy": "^1.18.1",
     "immer": "^10.0.2",
     "next": "^13.4.13",
     "prop-types": "^15.8.1",

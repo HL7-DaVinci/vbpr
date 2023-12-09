@@ -1,0 +1,8 @@
+FROM hapiproject/hapi:latest
+
+# VOLUME [ "/hapi/database" ]
+
+ENV hapi.fhir.implementationguides.vbpr.name=hl7.fhir.us.davinci-vbpr
+ENV hapi.fhir.implementationguides.vbpr.version=1.0.0-ballot
+
+EXPOSE 8080
