@@ -12,8 +12,8 @@ echo "Starting FHIR server"
 if [ ! "${DATA_EXISTS}" == "true" ]; then
     echo "Importing IG examples..."
 
-    ./bin/import-examples.sh
-    ./bin/import-examples.sh # Run twice to ensure dependencies are met
+    ../fhir-server/bin/import-examples.sh $FHIR_URL
+    ../fhir-server/bin/import-examples.sh $FHIR_URL # Run twice to ensure dependencies are met
 fi
 
 cd ${BIN_DIR}/../web-app
