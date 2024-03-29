@@ -1,5 +1,9 @@
 const fetchClientConfig = async () => {
-  const res = await fetch('/api/client-config');
+  const res = await fetch('/api/client-config', {
+    next: {
+      revalidate: 60,
+    }}
+  );
   const config = await res.json();
   return config;
 }
