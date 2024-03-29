@@ -16,3 +16,5 @@ services:
     build:
       context:  ./fhir-server
       dockerfile: docker/Dockerfile.init
+    environment:
+      - FHIR_PROTOCOL=https
