@@ -4,8 +4,8 @@ const getServerSideProps = async (req) => {
 
   const rawHostname = process.env.HOSTNAME_OVERRIDE || url.hostname || 'localhost';
   const hostname = rawHostname === '0.0.0.0' ? 'localhost' : rawHostname;
-  const port = process.env.PORT_OVERRIDE || url.port || '3000';
   const protocol = process.env.PROTOCOL || url.protocol || 'http:';
+  const port = process.env.PORT_OVERRIDE || url.port || (protocol === 'https:' ? '443' : '80');
   const basePath = '';
 
   // console.log('========= SERVER PROPS =========');
