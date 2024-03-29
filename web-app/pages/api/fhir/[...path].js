@@ -1,6 +1,6 @@
-import { getProxy } from '../../../server/proxy';
-
 import Cookies from 'cookies';
+
+import { getProxy } from '../../../server/proxy';
 
 // NextJS route config
 export const config = {
@@ -12,21 +12,29 @@ export const config = {
 export default async (req, res) => {
   const proxy = await getProxy();
 
+  // Remove the api prefix from url
+  req.url = req.url.replace(/^\/api\/fhir/, '');
+
+  const cookies = new Cookies(req, res);
+  const authorization = cookies.get('authorization');
+
+  // Don't forward cookies to the downstream server
+  req.headers.cookie = '';
+
+  if (authorization) {
+    req.headers.authorization = authorization;
+  }
+
   return new Promise((resolve, reject) => {
-    // Remove the api prefix from url
-    req.url = req.url.replace(/^\/api\/fhir/, '');
+    proxy.once('error', (reason) => {
+      console.error('Proxy Error: ', reason);
+      reject(reason);
+    });
 
-    const cookies = new Cookies(req, res);
-    const authorization = cookies.get('authorization');
+    console.log(`requesting ${req.url}`)
 
-    // Don't forward cookies to the downstream server
-    req.headers.cookie = '';
-
-    if (authorization) {
-      req.headers.authorization = authorization;
-    }
-
-    proxy.once('error', reject);
     proxy.web(req, res);
+
+    resolve();
   });
 };

@@ -7,7 +7,7 @@ export const getProxy = async () => {
   console.log(`Creating proxy to: ${config.fhirEndpoint}`)
   const proxy = httpProxy.createProxyServer({
     target: config.fhirEndpoint,
-    autoRewrite: false,
+    changeOrigin: true,
   });
   return proxy;
 };
