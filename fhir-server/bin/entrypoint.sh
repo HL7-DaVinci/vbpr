@@ -7,6 +7,8 @@ until $(curl -X GET --output /dev/null --silent --head --fail ${FHIR_URL}/metada
     sleep 5
 done
 
+echo "Initialization complete."
+
 # NOTE: Must run 2x due to dependencies and file name ordering
 ./import-examples.sh ${FHIR_URL}
 ./import-examples.sh ${FHIR_URL}

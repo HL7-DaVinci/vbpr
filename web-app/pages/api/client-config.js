@@ -2,11 +2,12 @@ const getServerSideProps = async (req) => {
   const reqUrl = req.headers["referer"];
   const url = new URL(reqUrl);
 
-  const rawHostname = process.env.HOSTNAME || url.hostname || 'localhost';
+  // const rawHostname = process.env.HOSTNAME || url.hostname || 'localhost';
+  const rawHostname = url.hostname || 'localhost';
   const hostname = rawHostname === '0.0.0.0' ? 'localhost' : rawHostname;
   const port = process.env.PORT || url.port || '3000';
-  const protocol = process.env.PROTOCOL || url.protocol || 'http:'; // http(s):
-  const basePath = ''
+  const protocol = process.env.PROTOCOL || url.protocol || 'http:';
+  const basePath = '';
 
   // console.log('========= SERVER PROPS =========');
   // console.log('Host:', hostname);
