@@ -18,3 +18,6 @@ services:
       dockerfile: docker/Dockerfile.init
     environment:
       - FHIR_PROTOCOL=https
+      - FHIR_HOST=vbpr-server.davinci.hl7.org
+      - FHIR_API_PORT=443
+      - FHIR_API_PATH=fhir
