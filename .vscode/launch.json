@@ -2,27 +2,27 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "name": "Attach to Chrome",
-        "port": 9222,
-        "request": "attach",
-        "type": "chrome",
-        "webRoot": "${workspaceFolder}/web-app"
+        "name": "Next.js: debug full stack",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "npm run dev",
+        "cwd": "${workspaceFolder}/web-app",
+        "env": {
+					"NODE_ENV": "development",
+					"FHIR_ENDPOINT": "https://vbpr-server.davinci.hl7.org/fhir",
+        },
+        "autoAttachChildProcesses": true,
       },
       {
-        "name": "Run application",
-        "type": "node",
+        "name": "Docker Node.js Launch",
+        "type": "docker",
         "request": "launch",
-        "cwd": "${workspaceFolder}/packages/app",
-        "console": "integratedTerminal",
-        "runtimeExecutable": "npm",
-        "runtimeArgs": [
-          "run",
-          "dev"
-        ],
-        "skipFiles": [
-          "<node_internals>/**",
-          "**/node_modules/**"
-        ]
+        "preLaunchTask": "docker-run: debug",
+        "platform": "node",
+        "node": {
+          "package": "${workspaceFolder}/web-app/package.json",
+          "localRoot": "${workspaceFolder}/web-app"
+        }
       }
     ]
   }
