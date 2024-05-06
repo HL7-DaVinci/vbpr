@@ -31,5 +31,3 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
       POSTGRES_DB: hapi
-    # volumes:
-    #   - ../.hapi.postgress.data:/var/lib/postgresql/data
