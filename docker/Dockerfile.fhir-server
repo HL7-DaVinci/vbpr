@@ -1,8 +1,21 @@
 FROM hapiproject/hapi:latest
 
-# VOLUME [ "/hapi/database" ]
+# General HAPI Configuration
+ENV hapi.fhir.auto_create_placeholder_reference_targets=true
+ENV hapi.fhir.bulk_export_enabled=true
+ENV hapi.fhir.bulk_import_enabled=true
+ENV hapi.fhir.enable_index_missing_fields=true
+ENV hapi.fhir.fhirpath_interceptor_enabled=true
+ENV hapi.fhir.subscription.resthook_enabled=true
 
+# General IG Configuration
+ENV hapi.fhir.ig_runtime_upload_enabled=false
+ENV hapi.fhir.install_transitive_ig_dependencies=true
+
+# VBPR IG Configuration
 ENV hapi.fhir.implementationguides.vbpr.name=hl7.fhir.us.davinci-vbpr
 ENV hapi.fhir.implementationguides.vbpr.version=1.0.0-ballot
+ENV hapi.fhir.implementationguides.vbpr.reloadExisting=false
+ENV hapi.fhir.implementationguides.vbpr.installMode=STORE_AND_INSTALL
 
 EXPOSE 8080

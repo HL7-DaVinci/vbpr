@@ -4,12 +4,12 @@ services:
       context:  ../fhir-server
       dockerfile: ../docker/Dockerfile.fhir-server
     environment:
-      - hapi.fhir.ig_runtime_upload_enabled=false
-      - hapi.fhir.install_transitive_ig_dependencies=true
-      - hapi.fhir.implementationguides.vbpr.name=hl7.fhir.us.davinci-vbpr
-      - hapi.fhir.implementationguides.vbpr.version=1.0.0-ballot
-      - hapi.fhir.implementationguides.vbpr.reloadExisting=false
-      - hapi.fhir.implementationguides.vbpr.installMode=STORE_AND_INSTALL
+      - spring.datasource.driverClassName=org.postgresql.Driver
+      - spring.jpa.properties.hibernate.dialect=ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+      - spring.jpa.properties.hibernate.search_enabled=false
+      - spring.datasource.url=jdbc:postgresql://db:5432/hapi
+      - spring.datasource.username=admin
+      - spring.datasource.password=admin
     ports:
       - "8080:8080"
   web:
@@ -24,3 +24,12 @@ services:
     build:
       context:  ../fhir-server
       dockerfile: ../docker/Dockerfile.init
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: hapi
+    # volumes:
+    #   - ../.hapi.postgress.data:/var/lib/postgresql/data

@@ -1,8 +1,8 @@
 FROM alpine:latest
 
-ENV FHIR_PROTOCOL=http
-ENV FHIR_HOST=fhir
-ENV FHIR_API_PORT=8080
+ENV FHIR_PROTOCOL=https
+ENV FHIR_HOST=vbpr-server.davinci.hl7.org
+ENV FHIR_API_PORT=443
 ENV FHIR_API_PATH=fhir
 
 RUN apk add curl jq
